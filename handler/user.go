@@ -6,11 +6,11 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type UserHandler struct {}
+type UserHandler struct{}
 
-func(h UserHandler) HandleUserShow(c echo.Context) error {
-  u:= model.User{
-    Email: "abhinav@gmail.com",
-  }
-  return render(c, user.Show(u))
+func (h UserHandler) HandleUserShow(c echo.Context) error {
+	u := model.User{
+		Email: "abhinav@gmail.com",
+	}
+	return render(c, user.Show(u))
 }
