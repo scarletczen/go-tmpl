@@ -10,8 +10,14 @@ type DB struct{}
 
 func main(){
   app := echo.New()
-  var db DB
-  userHandler := handler.UserHandler{db}
+  userHandler := handler.UserHandler{}
   app.GET("/user",userHandler.HandleUserShow)
   app.Start(":3000")
+}
+
+func withUser(next echo.HandlerFunc) echo.HandlerFunc{
+  return func(c echo.Context) error{
+    c.Set("user","abhinav@gmail.com")
+    return next(c)
+  }
 }
