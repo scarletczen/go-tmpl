@@ -1,9 +1,6 @@
 package handler
 
-import (
-  "github.com/labstack/echo/v4"
-  "github.com/abhinavthapa1998/go-templ/view/user"
-)
+import "github.com/labstack/echo/v4"
 
 type UserHandler struct {}
 
