@@ -6,8 +6,18 @@ import (
 "github.com/abhinavthapa1998/go-templ/view/components"
 )
 
+func getAuthenticatedUser(c context.Context) string{
+  user, ok := c.Value("user").(string)
+  if !ok {
+    return ""
+  }
+  return user
+}
+
 templ Show(user model.User){
-{ctx.Value("user").(string)}
+<h1>
+{getAuthenticatedUser(ctx)}
+</h1>
   @layout.Base(){
   <h1>Hello {user.Email}</h1>
   @components.Input("email", "email")

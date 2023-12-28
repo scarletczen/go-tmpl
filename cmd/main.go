@@ -1,9 +1,10 @@
 package main
 
 import (
+	"context"
 
-  "github.com/abhinavthapa1998/go-tmpl/handler"
-  "github.com/labstack/echo/v4"
+	"github.com/abhinavthapa1998/go-tmpl/handler"
+	"github.com/labstack/echo/v4"
 )
 
 type DB struct{}
@@ -17,7 +18,8 @@ func main(){
 
 func withUser(next echo.HandlerFunc) echo.HandlerFunc{
   return func(c echo.Context) error{
-    c.Set("user","abhinav@gmail.com")
+    ctx := context.WithValue(c.Request().Context(), "user", "abhinav@gmail.com")
+    c.SetRequest(c.Request().WithContext(ctx))
     return next(c)
   }
 }
